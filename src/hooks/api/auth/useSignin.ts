@@ -7,7 +7,10 @@ export const useSignin = () => {
   const { toast } = useToast();
   const { error, isError, isPending, mutate, mutateAsync, data, isSuccess } = useMutation({
     mutationFn: signinRequest,
-    onSuccess: () => {
+    onSuccess: response => {
+      // set into localstorage
+      localStorage.setItem('token', response.token);
+      localStorage.setItem('user', response);
       queryClient.invalidateQueries({ queryKey: ['users-signin'] });
       toast({
         title: 'Signin successful',
