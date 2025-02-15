@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const useSignup = () => {
   const queryClient = useQueryClient();
-  const { error, isError, isPending, mutate, mutateAsync, data } = useMutation({
+  const { error, isError, isPending, mutate, mutateAsync, data, isSuccess } = useMutation({
     mutationFn: singupRequest,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['users-signup'] });
@@ -20,5 +20,6 @@ export const useSignup = () => {
     mutate,
     mutateAsync,
     data,
+    isSuccess,
   };
 };
