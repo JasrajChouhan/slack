@@ -8,3 +8,12 @@ export const singupRequest = async (data: SignupSchemaType) => {
     throw error.response.data;
   }
 };
+
+export const signinRequest = async () => {
+  try {
+    const response = await axiosInstance.post('/api/v1/auth/users/signin');
+    return response.data;
+  } catch (error: any) {
+    throw error.response.data;
+  }
+};
