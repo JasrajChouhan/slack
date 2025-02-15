@@ -9,8 +9,10 @@ import { z } from 'zod';
 import CardWrapper from './card-wrapper/card-wrapper';
 import CardWrapperFooter from './card-wrapper/card-wrapper-fotter';
 import CardWrapperHeader from './card-wrapper/card-wrapper-header';
+import { useNavigate } from 'react-router';
 
 const Signin = () => {
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof SigninSchema>>({
     resolver: zodResolver(SigninSchema),
     defaultValues: {
@@ -71,7 +73,13 @@ const Signin = () => {
           </form>
         </Form>
         <Separator className="my-2 border border-gray-200" />
-        <CardWrapperFooter isFooter footerTitle="I don't have an account." showLink={true} linkText="Sign Up" />
+        <CardWrapperFooter
+          isFooter
+          footerTitle="I don't have an account."
+          showLink={true}
+          linkText="Sign Up"
+          onLinkClick={() => navigate('/auth/signup')}
+        />
       </CardWrapper>
     </div>
   );

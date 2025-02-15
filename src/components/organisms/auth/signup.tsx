@@ -9,8 +9,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import CardWrapperFooter from './card-wrapper/card-wrapper-fotter';
+import { useNavigate } from 'react-router';
 
 const Signup = () => {
+  const naigate = useNavigate();
   const form = useForm<z.infer<typeof SignupSchema>>({
     resolver: zodResolver(SignupSchema),
     defaultValues: {
@@ -86,7 +88,13 @@ const Signup = () => {
           </form>
         </Form>
         <Separator className="my-2 border border-gray-200" />
-        <CardWrapperFooter isFooter footerTitle="Aleardy have an account." showLink={true} linkText="Login" />
+        <CardWrapperFooter
+          isFooter
+          footerTitle="Aleardy have an account."
+          showLink={true}
+          linkText="Login"
+          onLinkClick={() => naigate('/auth/signin')}
+        />
       </CardWrapper>
     </div>
   );
