@@ -1,5 +1,5 @@
 import { axiosInstance } from '@/config';
-import { SignupSchemaType } from '@/types';
+import { SigninSchemaType, SignupSchemaType } from '@/types';
 export const singupRequest = async (data: SignupSchemaType) => {
   try {
     const response = await axiosInstance.post('/api/v1/auth/users/signup', data);
@@ -9,9 +9,9 @@ export const singupRequest = async (data: SignupSchemaType) => {
   }
 };
 
-export const signinRequest = async () => {
+export const signinRequest = async (data: SigninSchemaType) => {
   try {
-    const response = await axiosInstance.post('/api/v1/auth/users/signin');
+    const response = await axiosInstance.post('/api/v1/auth/users/signin', data);
     return response.data;
   } catch (error: any) {
     throw error.response.data;
