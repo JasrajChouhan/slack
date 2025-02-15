@@ -29,9 +29,9 @@
       ],
       "@/ui/*" : ["./src/components/ui/*"],
       "@/components/*" : ["./src/components/*"],
-      "@/lib/*" : ["./src/lib/*"],
+      "@/lib/*" : ["src/lib/*"],
       "@/hooks/*" : ["./src/hooks/*"],
-      "@/utils/*" : ["./src/lib/utils/*"],
+      "@/utils/*" : ["src/lib/utils/*"],
       "@/types/*" : ["./src/types/*"]
     }
   },
