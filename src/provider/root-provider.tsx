@@ -1,14 +1,14 @@
 import { Toaster } from '@/components/ui/toaster';
+import { CombineContextProvider } from '@/context/combine-context';
 import { BrowserRouter } from 'react-router';
-import { ReactQueryProvider } from './react-query';
 
 export const RootProvider = ({ children }: { children: React.ReactNode }) => {
   return (
-    <ReactQueryProvider>
+    <CombineContextProvider>
       <BrowserRouter>
         {children}
         <Toaster />
       </BrowserRouter>
-    </ReactQueryProvider>
+    </CombineContextProvider>
   );
 };
