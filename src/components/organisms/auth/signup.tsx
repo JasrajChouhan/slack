@@ -37,7 +37,6 @@ const Signup = () => {
       const response = await singup(data);
       console.log(response);
     } catch (error) {
-      alert(error);
       throw new Error('Signup failed');
     }
   };
