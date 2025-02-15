@@ -1,8 +1,8 @@
 import { axiosInstance } from '@/config';
-
-export const singupRequest = async (data) => {
+import { SignupSchemaType } from '@/types';
+export const singupRequest = async (data: SignupSchemaType) => {
   try {
-    const response = await axiosInstance.post('/auth/users/signup', data);
+    const response = await axiosInstance.post('/api/v1/auth/users/signup', data);
     return response.data;
   } catch (error: any) {
     throw error.response.data;
