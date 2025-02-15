@@ -1,9 +1,9 @@
-import { Button } from '@/components/ui/button';
+import { RouteProvider } from './route';
 const App = () => {
   return (
-    <div>
-      <Button>hello</Button>
-    </div>
+    <>
+      <RouteProvider />
+    </>
   );
 };
 
