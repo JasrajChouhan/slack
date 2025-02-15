@@ -4,48 +4,34 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
-import { SignupSchema } from '@/schemas';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import CardWrapperFooter from './card-wrapper/card-wrapper-fotter';
-import { useNavigate } from 'react-router';
-import { useSignup } from '@/hooks/api/auth';
-import { BiLoaderCircle } from 'react-icons/bi';
 import { useEffect } from 'react';
+import { UseFormReturn } from 'react-hook-form';
+import { BiLoaderCircle } from 'react-icons/bi';
+import { NavigateFunction } from 'react-router';
+import CardWrapperFooter from './card-wrapper/card-wrapper-fotter';
 
-const Signup = () => {
-  const navigate = useNavigate();
-  const { mutate, mutateAsync: singup, isSuccess } = useSignup();
-
-  const form = useForm<z.infer<typeof SignupSchema>>({
-    resolver: zodResolver(SignupSchema),
-    defaultValues: {
-      username: '',
-      email: '',
-      password: '',
+export interface SignupProps {
+  form: UseFormReturn<
+    {
+      username: string;
+      email: string;
+      password: string;
     },
-  });
-  const {
-    handleSubmit,
-    formState: { isSubmitting },
-  } = form;
-
-  const onSubmit = async (data: z.infer<typeof SignupSchema>) => {
-    console.log(data);
-    try {
-      const response = await singup(data);
-      console.log(response);
-    } catch (error) {
-      throw new Error('Signup failed');
-    }
-  };
-
+    any,
+    undefined
+  >;
+  onSubmit: any;
+  isSubmitting: boolean;
+  navigate: NavigateFunction;
+  isSuccess: boolean;
+}
+const Signup = ({ form, onSubmit, isSubmitting, navigate, isSuccess }: SignupProps) => {
   useEffect(() => {
     if (isSuccess) {
       navigate('/auth/signin');
     }
   }, [isSuccess, navigate]);
+
   return (
     <div className="flex h-screen items-center justify-center">
       <CardWrapper>
@@ -57,7 +43,7 @@ const Signup = () => {
         />
 
         <Form {...form}>
-          <form onSubmit={handleSubmit(onSubmit)} className="mx-auto w-[90%] space-y-4">
+          <form onSubmit={onSubmit} className="mx-auto w-[90%] space-y-4">
             <FormField
               control={form.control}
               name="username"
@@ -93,7 +79,7 @@ const Signup = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="********" type="password" {...field} disabled={isSubmitting} />
+                    <Input placeholder="userUSER12@" type="password" {...field} disabled={isSubmitting} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
