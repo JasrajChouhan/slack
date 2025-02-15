@@ -9,6 +9,7 @@ interface AuthState {
 interface AuthContextType {
   auth: AuthState;
   setAuth: React.Dispatch<React.SetStateAction<AuthState>>;
+  logout: () => void;
 }
 
 // Create Context with a default value
@@ -44,7 +45,21 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, []);
 
-  return <AuthContext.Provider value={{ auth, setAuth }}>{children}</AuthContext.Provider>;
+  const logout = () => {
+    try {
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+      setAuth({
+        user: null,
+        token: null,
+        isLoading: true,
+      });
+    } catch (error) {
+      throw new Error('Logout failed');
+    }
+  };
+
+  return <AuthContext.Provider value={{ auth, setAuth, logout }}>{children}</AuthContext.Provider>;
 };
 
 // Custom hook to use the AuthContext
