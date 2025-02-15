@@ -5,6 +5,8 @@ import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
+import eslintPlugingQuery from 'eslint-plugin-query';
+
 export default tseslint.config(
   { ignores: ['dist'] },
   {
@@ -15,6 +17,7 @@ export default tseslint.config(
       globals: globals.browser,
     },
     plugins: {
+      'eslint-plugin-query': eslintPlugingQuery,
       'simple-import-sort': simpleImportSort,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,

@@ -1,1 +1,1 @@
-export {SignupSchema} from './form-schema';
+export { SignupSchema } from './form-schema';

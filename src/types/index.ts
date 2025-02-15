@@ -1,1 +1,1 @@
-export {type SignupSchemaType} from './form-types';
+export { type SignupSchemaType } from './form-types';
