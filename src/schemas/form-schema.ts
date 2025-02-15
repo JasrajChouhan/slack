@@ -11,3 +11,12 @@ export const SignupSchema = z.object({
     message: 'Password must be at least 6 characters long and contain at least one letter and one number',
   }),
 });
+
+export const SigninSchema = z.object({
+  email: z.string().email({
+    message: 'Invalid email address',
+  }),
+  password: z.string().regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,20}$/, {
+    message: 'Password must be at least 6 characters long and contain at least one letter and one number',
+  }),
+});
