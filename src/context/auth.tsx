@@ -2,7 +2,8 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 interface AuthState {
   user: any | null;
-  token: string;
+  token: string | null;
+  isLoading: boolean;
 }
 
 interface AuthContextType {
@@ -16,7 +17,8 @@ export const AuthContext = createContext<AuthContextType | undefined>(undefined)
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [auth, setAuth] = useState<AuthState>({
     user: null,
-    token: '',
+    token: null,
+    isLoading: true,
   });
 
   useEffect(() => {
@@ -28,6 +30,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setAuth({
           user: JSON.parse(user),
           token,
+          isLoading: false,
+        });
+      } else {
+        setAuth({
+          user: null,
+          token: null,
+          isLoading: false,
         });
       }
     } catch (error) {

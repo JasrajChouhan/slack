@@ -26,7 +26,7 @@ export interface SigninProps {
 const Signin = ({ onSubmit, isSubmitting, navigate, isSuccess, form }: SigninProps) => {
   useEffect(() => {
     if (isSuccess) {
-      navigate('/auth/dashboard'); // build in future
+      navigate('/home'); // build in future
     }
   }, [isSuccess, navigate]);
   return (
