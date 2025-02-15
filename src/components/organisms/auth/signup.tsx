@@ -26,7 +26,7 @@ const Signup = () => {
   });
   const {
     handleSubmit,
-    formState: { isLoading },
+    formState: { isLoading , isSubmitting },
   } = form;
 
   const onSubmit = async (data: z.infer<typeof SignupSchema>) => {
@@ -93,7 +93,7 @@ const Signup = () => {
               )}
             />
             <Button type="submit" variant={'outline'} className="w-full">
-              {isLoading ? 'Loading...' : 'Sign Up'}
+              {isSubmitting ? 'Loading...' : 'Sign Up'}
             </Button>
           </form>
         </Form>
