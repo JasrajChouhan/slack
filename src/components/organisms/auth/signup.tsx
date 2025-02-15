@@ -10,9 +10,12 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import CardWrapperFooter from './card-wrapper/card-wrapper-fotter';
 import { useNavigate } from 'react-router';
+import { useSignup } from '@/hooks/api/auth';
 
 const Signup = () => {
-  const naigate = useNavigate();
+  const navigate = useNavigate();
+  const { mutate, mutateAsync: singup } = useSignup();
+
   const form = useForm<z.infer<typeof SignupSchema>>({
     resolver: zodResolver(SignupSchema),
     defaultValues: {
@@ -26,8 +29,15 @@ const Signup = () => {
     formState: { isLoading },
   } = form;
 
-  const onSubmit = (data: z.infer<typeof SignupSchema>) => {
+  const onSubmit = async (data: z.infer<typeof SignupSchema>) => {
     console.log(data);
+    try {
+      const response = await singup(data);
+      console.log(response);
+    } catch (error) {
+      alert(error);
+      throw new Error('Signup failed');
+    }
   };
   return (
     <div className="flex h-screen items-center justify-center">
@@ -93,7 +103,7 @@ const Signup = () => {
           footerTitle="Aleardy have an account."
           showLink={true}
           linkText="Login"
-          onLinkClick={() => naigate('/auth/signin')}
+          onLinkClick={() => navigate('/auth/signin')}
         />
       </CardWrapper>
     </div>

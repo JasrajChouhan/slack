@@ -1,9 +1,8 @@
 import { singupRequest } from '@/api/auth';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-const queryClient = useQueryClient();
-
 export const useSignup = () => {
+  const queryClient = useQueryClient();
   const { error, isError, isPending, mutate, mutateAsync, data } = useMutation({
     mutationFn: singupRequest,
     onSuccess: () => {
