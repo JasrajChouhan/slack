@@ -19,3 +19,17 @@ export const createWorkspaceRequest = async ({ data, token }: createWorkspaceReq
     throw error.response.data;
   }
 };
+
+// Fetch workspaces
+export const fetchWorkspacesRequest = async (token: string) => {
+  try {
+    const response = await axiosInstance.get('/api/v1/workspaces', {
+      headers: {
+        'x-access-token': token,
+      },
+    });
+    return response.data;
+  } catch (error: any) {
+    throw error.response.data;
+  }
+};
