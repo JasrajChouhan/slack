@@ -6,15 +6,16 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { useAuth } from '@/context';
+import { useAuth, useCreateWorkSpace } from '@/context';
 import { useToast } from '@/hooks/use-toast';
-import { LogOutIcon, SettingsIcon } from 'lucide-react';
+import { LogOutIcon, PencilIcon, SettingsIcon } from 'lucide-react';
 import { useNavigate } from 'react-router';
 
 const UserButton = () => {
   const { auth, logout } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { openCreateWorkspaceModal, setOpenCreateWorkspaceModal } = useCreateWorkSpace();
 
   const handleLogout = () => {
     if (logout) {
@@ -25,6 +26,10 @@ const UserButton = () => {
       });
       navigate('/auth/signin');
     }
+  };
+
+  const handleCreateWorkspace = () => {
+    setOpenCreateWorkspaceModal(true);
   };
 
   const avatarUrl = auth?.user?.avatar || '';
@@ -40,6 +45,13 @@ const UserButton = () => {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent sideOffset={5} className="w-40 rounded-md bg-white p-1 shadow-md">
+        <DropdownMenuItem
+          onClick={handleCreateWorkspace}
+          className="flex cursor-pointer items-center gap-2 rounded-md p-2 hover:bg-gray-100"
+        >
+          <PencilIcon className="h-4 w-4" />
+          <span>Create Workspace</span>
+        </DropdownMenuItem>
         <DropdownMenuItem className="flex cursor-pointer items-center gap-2 rounded-md p-2 hover:bg-gray-100">
           <SettingsIcon className="h-4 w-4" />
           <span>Settings</span>

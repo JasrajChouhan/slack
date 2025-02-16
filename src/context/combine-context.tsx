@@ -1,6 +1,7 @@
 import { ReactQueryProvider } from '@/provider';
 import { AuthProvider } from '@/context/auth';
 import { JSX } from 'react';
+import { CreateWorkSpaceContextProvider } from './workspace';
 
 export type Provider = ({ children }: { children: React.ReactNode }) => JSX.Element;
 export const CombineContext = (...providers: Provider[]) => {
@@ -14,4 +15,4 @@ export const CombineContext = (...providers: Provider[]) => {
   };
 };
 
-export const CombineContextProvider = CombineContext(ReactQueryProvider, AuthProvider);
+export const CombineContextProvider = CombineContext(ReactQueryProvider, AuthProvider, CreateWorkSpaceContextProvider);
