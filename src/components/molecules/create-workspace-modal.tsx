@@ -33,9 +33,9 @@ export const CreateWorkspaceModal = () => {
   console.log(openCreateWorkspaceModal);
   const onSubmit = async (data: WorkspaceSchemaType) => {
     try {
-      await createWorkspace(data);
+      const response = await createWorkspace(data);
       setOpenCreateWorkspaceModal(false);
-      navigate('/home'); // TODO : Change to workspace section
+      navigate(`/workspaces/${response.data._id}`); // TODO : Change to workspace section
     } catch (error) {
       console.log(error);
     } finally {
