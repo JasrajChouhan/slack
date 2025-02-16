@@ -60,7 +60,7 @@ export const CreateWorkspaceModal = () => {
                 <FormItem>
                   <FormLabel>Workspace Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="My Workspace" maxLength={100}  {...field} disabled={isSubmitting} />
+                    <Input placeholder="My Workspace" maxLength={100} {...field} disabled={isSubmitting} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

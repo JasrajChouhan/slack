@@ -33,3 +33,18 @@ export const fetchWorkspacesRequest = async (token: string) => {
     throw error.response.data;
   }
 };
+
+// Fetch details of one workspace by ID
+
+export const fetchWorkspaceDetailsRequest = async (workspaceId: string, token: string) => {
+  try {
+    const response = await axiosInstance.get(`/api/v1/workspaces/${workspaceId}`, {
+      headers: {
+        'x-access-token': token,
+      },
+    });
+    return response.data;
+  } catch (error: any) {
+    throw error.response.data;
+  }
+};
