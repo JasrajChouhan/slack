@@ -2,15 +2,13 @@ import { fetchWorkspaceDetailsRequest } from '@/api/workspace';
 import { useAuth } from '@/context';
 import { useQuery } from '@tanstack/react-query';
 
-export const useFetchWorkspaceDetails = () => {
+export const useFetchWorkspaceDetails = (workspaceId: string) => {
   const { auth } = useAuth();
   const token = auth?.token as string;
+
   const { data, isError, isFetched, isLoading, isLoadingError, refetch, status } = useQuery({
-    queryKey: ['workspace-details'],
-    queryFn: ({ queryKey }) => {
-      const [_, workspaceId] = queryKey;
-      return fetchWorkspaceDetailsRequest(workspaceId, token);
-    },
+    queryKey: [`workspace-details-${workspaceId}`],
+    queryFn: ({ queryKey }) => fetchWorkspaceDetailsRequest(queryKey[0] as string, token),
     staleTime: 1 * 60 * 1000, // 1 minutes
     throwOnError: true,
   });
