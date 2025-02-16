@@ -16,7 +16,8 @@ export const useFetchWorkspaces = () => {
   } = useQuery({
     queryKey: ['workspaces'],
     queryFn: () => fetchWorkspacesRequest(token),
-    staleTime: 3 * 60 * 1000, // 3 minutes
+    staleTime: 1 * 60 * 1000, // 1 minutes
+    throwOnError: true,
   });
 
   return {
