@@ -7,7 +7,7 @@ const Home = () => {
   const { isFetching, data: workspaces } = useFetchWorkspaces();
 
   const navigate = useNavigate();
-  console.log(workspaces)
+  console.log(workspaces);
 
   useEffect(() => {
     if (isFetching) return;
@@ -17,7 +17,6 @@ const Home = () => {
     } else {
       navigate(`/workspaces/${workspaces.data[0]._id}`);
     }
-    
   }, [navigate, isFetching, workspaces]);
 
   return (
