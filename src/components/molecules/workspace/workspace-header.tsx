@@ -1,9 +1,22 @@
 import { Button } from '@/components/ui/button';
-import { DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import {
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { useAuth } from '@/context';
 import { DropdownMenu } from '@radix-ui/react-dropdown-menu';
+import { ListFilterIcon, SquarePenIcon } from 'lucide-react';
 
 const WorkspaceHeader = ({ workspace }: { workspace: any }) => {
-  console.log(workspace?.name);
+  const workspaceMembers = workspace?.members;
+  const { auth } = useAuth();
+
+  const isLoggedInUserAdminOfWorkspace = workspaceMembers?.find((member: any) => {
+    return member.memberId._id === auth?.user?._id && member.role === 'admin';
+  });
+
   return (
     <div className="flex h-[50px] items-center justify-center gap-0.5 px-4">
       <DropdownMenu>
@@ -24,8 +37,28 @@ const WorkspaceHeader = ({ workspace }: { workspace: any }) => {
               <p className="text-muted-foreground text-xs">Active Workspace</p>
             </div>
           </DropdownMenuItem>
+
+          {isLoggedInUserAdminOfWorkspace && (
+            <>
+              <DropdownMenuItem className="cursor-pointer py-2">Preferences</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="cursor-pointer py-2">
+                Invite to people <span className="font-semibold">{workspace?.name}</span>
+              </DropdownMenuItem>
+            </>
+          )}
         </DropdownMenuContent>
       </DropdownMenu>
+
+      <div className="flex items-center gap-0.5">
+        <Button variant="transparent" size="iconSm">
+          <ListFilterIcon className="size-5" />
+        </Button>
+
+        <Button variant="transparent" size="iconSm">
+          <SquarePenIcon className="size-5" />
+        </Button>
+      </div>
     </div>
   );
 };
