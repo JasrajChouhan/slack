@@ -46,10 +46,7 @@ const WorkspaceSwitter = () => {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent>
-        <DropdownMenuItem
-          title="Current workspace"
-          className="flex flex-col items-start justify-start gap-y-1"
-        >
+        <DropdownMenuItem title="Current workspace" className="flex flex-col items-start justify-start gap-y-1">
           <p className="truncate text-zinc-800 hover:text-zinc-900">{workspaceData?.data?.name}</p>
           <span className="font-semibold">Active</span>
         </DropdownMenuItem>
