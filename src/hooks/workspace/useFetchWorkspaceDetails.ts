@@ -6,7 +6,7 @@ export const useFetchWorkspaceDetails = (workspaceId: string) => {
   const { auth } = useAuth();
   const token = auth?.token as string;
 
-  const { data, isError, isFetched, isLoading, isLoadingError, refetch, status } = useQuery({
+  const { data, isError, isFetched, isLoading, isLoadingError, refetch, status, isFetching } = useQuery({
     queryKey: [`workspace-details-${workspaceId}`],
     queryFn: () => fetchWorkspaceDetailsRequest(workspaceId as string, token),
     staleTime: 1 * 60 * 1000, // 1 minutes
@@ -20,5 +20,6 @@ export const useFetchWorkspaceDetails = (workspaceId: string) => {
     isLoadingError,
     refetch,
     status,
+    isFetching,
   };
 };
