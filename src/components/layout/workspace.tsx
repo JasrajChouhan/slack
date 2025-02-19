@@ -1,6 +1,7 @@
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import WorkspaceSidebar from '../molecules/workspace-sidebar';
 import WorkspaceOptions from '../molecules/workspace/workspace-options';
+import WorkspacePannel from '../organisms/workspace/workspace-pannel';
 
 export const WorkspaceLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -10,7 +11,7 @@ export const WorkspaceLayout = ({ children }: { children: React.ReactNode }) => 
         <WorkspaceSidebar />
         <ResizablePanelGroup direction="horizontal" className="min-h-screen w-full">
           <ResizablePanel className="bg-violet-600 md:block" defaultSize={20} minSize={11}>
-            <div>sidebar</div>
+            <WorkspacePannel />
           </ResizablePanel>
           <ResizableHandle withHandle autoSave="workspace-pannel" />
           <ResizablePanel minSize={20}>
