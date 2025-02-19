@@ -8,7 +8,7 @@ export const useFetchWorkspaceDetails = (workspaceId: string) => {
 
   const { data, isError, isFetched, isLoading, isLoadingError, refetch, status } = useQuery({
     queryKey: [`workspace-details-${workspaceId}`],
-    queryFn: ({ queryKey }) => fetchWorkspaceDetailsRequest(queryKey[0] as string, token),
+    queryFn: () => fetchWorkspaceDetailsRequest(workspaceId as string, token),
     staleTime: 1 * 60 * 1000, // 1 minutes
     throwOnError: true,
   });
