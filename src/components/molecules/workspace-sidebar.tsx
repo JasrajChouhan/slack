@@ -1,6 +1,7 @@
 import { BellIcon, HomeIcon, MessageSquareIcon, MoreHorizontalIcon } from 'lucide-react';
 import SidebarButton from '../atoms/sidebar-button';
 import UserButton from './user-button';
+import WorkspaceSwitter from './workspace/workspace-switter';
 
 const SidebarButtons = () => {
   return (
@@ -19,6 +20,7 @@ const WorkspaceSidebar = () => {
       <div className="flex justify-center">
         <span className="text-center font-bold text-white">Logo</span>
       </div>
+      <WorkspaceSwitter />
       <SidebarButtons />
       <div className="mt-auto mb-5 flex flex-col items-center justify-center gap-y-1">
         <UserButton />
