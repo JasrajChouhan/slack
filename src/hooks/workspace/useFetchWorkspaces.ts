@@ -13,6 +13,7 @@ export const useFetchWorkspaces = () => {
     isLoadingError,
     refetch,
     status,
+    isFetching,
   } = useQuery({
     queryKey: ['workspaces'],
     queryFn: () => fetchWorkspacesRequest(token),
@@ -28,5 +29,6 @@ export const useFetchWorkspaces = () => {
     isLoadingError,
     refetch,
     status,
+    isFetching,
   };
 };
