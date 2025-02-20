@@ -5,7 +5,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useAuth } from '@/context';
+import { useAuth, useWorkspacePrefrence } from '@/context';
 import { DropdownMenu } from '@radix-ui/react-dropdown-menu';
 import { ListFilterIcon, SquarePenIcon } from 'lucide-react';
 
@@ -16,6 +16,11 @@ const WorkspaceHeader = ({ workspace }: { workspace: any }) => {
   const isLoggedInUserAdminOfWorkspace = workspaceMembers?.find((member: any) => {
     return member.memberId._id === auth?.user?._id && member.role === 'admin';
   });
+  const { setOpenCreateWorkspacePrefModal } = useWorkspacePrefrence();
+
+  const hanldePrefrencesModal = () => {
+    setOpenCreateWorkspacePrefModal(true);
+  };
 
   return (
     <div className="flex h-[50px] items-center justify-center gap-0.5 px-4">
@@ -40,7 +45,9 @@ const WorkspaceHeader = ({ workspace }: { workspace: any }) => {
 
           {isLoggedInUserAdminOfWorkspace && (
             <>
-              <DropdownMenuItem className="cursor-pointer py-2">Preferences</DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer py-2" onClick={hanldePrefrencesModal}>
+                Preferences
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="cursor-pointer py-2">
                 Invite to people <span className="font-semibold">{workspace?.name}</span>
