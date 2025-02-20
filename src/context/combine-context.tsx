@@ -1,6 +1,7 @@
 import { AuthProvider } from '@/context/auth';
 import { ReactQueryProvider } from '@/provider';
 import { JSX } from 'react';
+import { CreateChannelContextProvider } from './channel/create-channel-context';
 import { CreateWorkSpaceContextProvider } from './workspace';
 import { WorkspacePrefrenceContextProvider } from './workspace-prefrence-model';
 
@@ -21,4 +22,5 @@ export const CombineContextProvider = CombineContext(
   AuthProvider,
   CreateWorkSpaceContextProvider,
   WorkspacePrefrenceContextProvider,
+  CreateChannelContextProvider,
 );
